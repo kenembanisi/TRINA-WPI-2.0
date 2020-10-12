@@ -1,0 +1,57 @@
+<launch>
+     <!-- Start the GUIs -->
+    <arg name="start_gazebo" default="true"/>
+    <arg name="gazebo_gui"   default ="true"/>
+    <arg name="start_rviz" default="true"/>
+    <!-- Rviz config -->
+    <arg name="rviz_config" value="$(find trina2_gazebo)/rviz/rviz_config.rviz" />
+
+    <!-- Gazebo parameters -->
+    <arg name="use_sim_time" default="true"/>
+    <arg name="debug" default="false" />
+    <!-- use trajectory controllers and MoveIt -->
+    <arg name="use_trajectory_controller" default="true"/>
+    <arg name="paused" default="$(arg use_trajectory_controller)"/>
+  
+  <!-- Gazebo environment -->
+    <env name="GAZEBO_MODEL_PATH" value="$(find hospital_gazebo)/models:${GAZEBO_MODEL_PATH}" />
+    <arg name="world_name" default="hospital_small"/>
+    <!-- <arg name="world_name" default="single_room"/> -->
+    <arg name="world_file" default="$(find hospital_gazebo)/worlds/$(arg world_name).world"/>
+    
+
+    <!-- Start Gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+            <arg name="gui" value="$(arg gazebo_gui)"/>
+            <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+            <arg name="debug" value="$(arg debug)"/>
+            <arg name="paused" value="$(arg paused)"/> 
+            <arg name="world_name" value="$(arg world_file)"/>
+    </include>
+
+<!-- BEGIN ROBOT 1-->
+<group ns="trina2_1">
+    <include file="$(find trina2_gazebo)/launch/trina2.launch" >
+      <arg name="robot_name"  value="trina2_1" />
+      <arg name="right_prefix" value="right_arm_" />
+      <arg name="left_prefix" value="left_arm_" />
+      <arg name="x0" value="4"/>
+      <arg name="y0" value="-7"/>
+      <arg name="z0" value="0"/>
+      <arg name="yaw" value="1.57" />
+    </include>
+  </group>
+
+<!-- BEGIN ROBOT 2-->
+<group ns="trina2_2">
+    <include file="$(find trina2_gazebo)/launch/trina2.launch" >
+      <arg name="robot_name"  value="trina2_2" />
+      <arg name="right_prefix" value="right_arm_" />
+      <arg name="left_prefix" value="left_arm_" />
+      <arg name="x0" value="3"/>
+      <arg name="y0" value="-8"/>
+      <arg name="z0" value="0"/>
+      <arg name="yaw" value="1.57" />
+    </include>
+  </group>
+</launch>
