@@ -33,12 +33,17 @@
 <group ns="trina2_1">
     <include file="$(find trina2_gazebo)/launch/trina2.launch" >
       <arg name="robot_name"  value="trina2_1" />
-      <arg name="right_prefix" value="right_arm_" />
-      <arg name="left_prefix" value="left_arm_" />
+      <arg name="right_prefix" value="right_arm_trina2_1/" />
+      <arg name="left_prefix" value="left_arm_trina2_1/" />
       <arg name="x0" value="4"/>
       <arg name="y0" value="-7"/>
       <arg name="z0" value="0"/>
       <arg name="yaw" value="1.57" />
+    </include>
+    <include file="$(find trina2_navigation)/launch/trina2_amcl.launch" >      
+      <arg name="scan" value= "trina2_1/base_scan"/>
+      <arg name="base_frame" value ="trina2_1/base_link"/>
+      <arg name="cmd_vel" value = "trina2_1/base_controller/cmd_vel"/> 
     </include>
   </group>
 
@@ -46,12 +51,17 @@
 <group ns="trina2_2">
     <include file="$(find trina2_gazebo)/launch/trina2.launch" >
       <arg name="robot_name"  value="trina2_2" />
-      <arg name="right_prefix" value="right_arm_" />
-      <arg name="left_prefix" value="left_arm_" />
+      <arg name="right_prefix" value="right_arm_trina2_2/" />
+      <arg name="left_prefix" value="left_arm_trina2_2/" />
       <arg name="x0" value="3"/>
       <arg name="y0" value="-8"/>
       <arg name="z0" value="0"/>
       <arg name="yaw" value="1.57" />
+    </include>
+    <include file="$(find trina2_navigation)/launch/trina2_amcl.launch" >      
+      <arg name="scan" value= "trina2_2/base_scan"/>
+      <arg name="base_frame" value ="trina2_2/base_link"/>
+      <arg name="cmd_vel" value = "trina2_2/base_controller/cmd_vel"/> 
     </include>
   </group>
 </launch>
