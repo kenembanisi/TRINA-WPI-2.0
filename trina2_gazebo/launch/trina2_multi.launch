@@ -1,0 +1,30 @@
+<launch>
+
+<!-- BEGIN ROBOT 1-->
+<group ns="trina2_1">
+    <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
+      <arg name="robot_name"  value="trina2_1" />
+      <arg name="right_prefix" value="right_arm/" />
+      <arg name="left_prefix" value="left_arm/" />
+      <arg name="x0" value="4"/>
+      <arg name="y0" value="-7"/>
+      <arg name="z0" value="0"/>
+      <arg name="yaw" value="1.57" />
+    </include>
+  </group>
+<include file="$(find trina2_navigation)/launch/trina2_1_amcl.launch"/>
+
+<!-- BEGIN ROBOT 2-->
+<group ns="trina2_2">
+    <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
+      <arg name="robot_name"  value="trina2_2" />
+      <arg name="right_prefix" value="right_arm/" />
+      <arg name="left_prefix" value="left_arm/" />
+      <arg name="x0" value="3"/>
+      <arg name="y0" value="-8"/>
+      <arg name="z0" value="0"/>
+      <arg name="yaw" value="1.57" />
+    </include>
+  </group>
+<include file="$(find trina2_navigation)/launch/trina2_2_amcl.launch"/>
+</launch>

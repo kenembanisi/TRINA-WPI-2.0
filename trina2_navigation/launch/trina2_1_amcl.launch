@@ -1,18 +1,18 @@
 <launch>
 
-  <arg name="scan" default="base_scan"/>
-  <arg name="base_frame" default="base_link"/>
-  <arg name="cmd_vel" default="base_controller/cmd_vel"/>
-
-  <!-- Map Server -->
-  <arg name="world_name" default="hospital_small"/>
-  <!-- <arg name="world_name" default="single_room"/> -->
-  <node name="map_server" pkg="map_server" type="map_server" 
-        args="$(find trina2_navigation)/maps/$(arg world_name).yaml" />
+  <arg name="scan" default="trina2_1/base_scan"/>
+  <arg name="base_frame" default="trina2_1/base_link"/>
+  <arg name="cmd_vel" default="trina2_1/base_controller/cmd_vel"/>
 
   <!-- AMCL Node -->
-  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+  <node name="trina2_1_amcl" pkg="amcl" type="amcl" output="screen">
     <remap from="scan" to="$(arg scan)"/>
+    <remap from="amcl_pose" to="trina2_1/amcl_pose"/>
+    <remap from="amcl/parameter_updates" to="trina2_1/amcl/parameter_updates"/>
+    <remap from="amcl/parameter_descriptions" to="trina2_1/amcl/parameter_descriptions"/>
+    <remap from="initialpose" to="trina2_1/initialpose"/>
+    <remap from="particlecloud" to="trina2_1/particlecloud"/>
+
     
     <!-- Filter -->
     <param name="min_particles" value="20"/>
@@ -28,9 +28,12 @@
   </node>
 
   <!-- Move Base -->
-  <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+  <node name="trina2_1_move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
     <remap from="cmd_vel" to="$(arg cmd_vel)"/>
-
+    <remap from = "map" to = "/map" />
+    <remap from = "move_base/current_goal" to = "trina2_1/move_base/current_goal" />
+    <remap from = "move_base/goal" to = "trina2_1/move_base/goal" />
+    <remap from = "move_base_simple/goal" to = "trina2_1/move_base_simple/goal" />
     <rosparam file="$(find trina2_navigation)/config/costmap_common_params.yaml" command="load" ns="global_costmap" 
      subst_value="true"/>
     <rosparam file="$(find trina2_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" 
