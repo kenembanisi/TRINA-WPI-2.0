@@ -1,17 +1,25 @@
 <launch>
 
-  <arg name="scan" default="trina2_2/base_scan"/>
-  <arg name="base_frame" default="trina2_2/base_link"/>
+  <arg name="scan" default="base_scan"/>
+  <arg name="base_frame" default="trina2_2_tf/base_link"/>
   <arg name="cmd_vel" default="trina2_2/base_controller/cmd_vel"/>
 
   <!-- AMCL Node -->
   <node name="trina2_2_amcl" pkg="amcl" type="amcl" output="screen">
+    <param name="tf_prefix" value="trina2_2_tf" />
     <remap from="scan" to="$(arg scan)"/>
     <remap from="amcl_pose" to="trina2_2/amcl_pose"/>
     <remap from="amcl/parameter_updates" to="trina2_2/amcl/parameter_updates"/>
     <remap from="amcl/parameter_descriptions" to="trina2_2/amcl/parameter_descriptions"/>
     <remap from="initialpose" to="trina2_2/initialpose"/>
     <remap from="particlecloud" to="trina2_2/particlecloud"/>
+    <!-- copied --> 
+    <!-- <remap from="scan" to="base_scan"/> -->
+    <remap from="static_map" to="/static_map"/>
+
+    <param name="global_frame_id" value="/map"/>
+    <!-- <param name="odom_frame_id" value="trina2_2_tf/odom"/>
+    <param name="base_frame_id" value="trina2_2_tf/base_link"/> -->
 
     
     <!-- Filter -->
@@ -21,10 +29,10 @@
     <param name="update_min_d" value="0.25"/>
     <!-- Laser -->
     <!-- Odometry -->
-    <param name="odom_frame_id" value="odom"/>
+    <param name="odom_frame_id" value="trina2_2_tf/odom"/>
     <param name="odom_model_type" value="diff-corrected"/>
     <param name="base_frame_id" value="$(arg base_frame)"/>
-    <param name="global_frame_id" value="map"/>
+    <!-- <param name="global_frame_id" value="map"/> -->
   </node>
 
   <!-- Move Base -->

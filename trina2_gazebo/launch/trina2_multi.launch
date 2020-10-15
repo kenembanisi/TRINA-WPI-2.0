@@ -2,6 +2,7 @@
 
 <!-- BEGIN ROBOT 1-->
 <group ns="trina2_1">
+    <param name="tf_prefix" value="trina2_1_tf" />
     <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
       <arg name="robot_name"  value="trina2_1" />
       <arg name="right_prefix" value="right_arm_" />
@@ -16,6 +17,7 @@
 
 <!-- BEGIN ROBOT 2-->
 <group ns="trina2_2">
+    <param name="tf_prefix" value="trina2_2_tf" />
     <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
       <arg name="robot_name"  value="trina2_2" />
       <arg name="right_prefix" value="right_arm_" />
