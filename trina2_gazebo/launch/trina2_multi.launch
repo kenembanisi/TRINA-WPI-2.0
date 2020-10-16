@@ -14,7 +14,7 @@
   </group>
 <include file="$(find trina2_navigation)/launch/trina2_1_amcl.launch"/>
 
-<!-- BEGIN ROBOT 2-->
+<!-- BEGIN ROBOT 2
 <group ns="trina2_2">
     <include file="$(find trina2_gazebo)/launch/trina2_single.launch" >
       <arg name="robot_name"  value="trina2_2" />
@@ -26,5 +26,5 @@
       <arg name="yaw" value="1.57" />
     </include>
   </group>
-<include file="$(find trina2_navigation)/launch/trina2_2_amcl.launch"/>
+<include file="$(find trina2_navigation)/launch/trina2_2_amcl.launch"/> -->
 </launch>

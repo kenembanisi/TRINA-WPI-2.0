@@ -65,6 +65,6 @@
                 sim:=true --inorder"/>
 
     <!-- Load multiple robots-->
-    <include file="$(find trina2_gazebo)/launch/trina2_multi.launch" />
+    <include file="$(find trina2_gazebo)/launch/trina2_single.launch" />
 
 </launch>

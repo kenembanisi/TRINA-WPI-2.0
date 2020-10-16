@@ -156,7 +156,7 @@
 
 
     <!-- Start the robot in the right config if it doesn't--> 
-    <!-- <node name="starting_position_controlller" pkg="trina2_control" type="get_into_start_position.py" />--> 
+    <node name="starting_position_controlller" pkg="trina2_control" type="get_into_start_position.py" /> 
 
     <!-- Start the robot in the right config if it doesn't--> 
     <node name="boot_message" pkg="trina2_control" type="send_boot_message.py" 
